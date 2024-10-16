@@ -54,6 +54,7 @@ function getMatchDataFromSeries(filename)
 {
     let seriesJson = require(filename);
     let m=seriesJson["props"]["appPageProps"]["data"]["content"]["matches"];
+    let s = seriesJson["props"]["appPageProps"]["data"]["series"]
     let noOfMatches = m.length;
     let seriesObj={};
     seriesObj.noOfMatches=noOfMatches;
@@ -71,6 +72,7 @@ function getMatchDataFromSeries(filename)
         matchObj.team2score= m[i].teams[1].score
         matchObj.result= m[i].statusText;
         matchObj.startTime=m[i].startTime;
+        matchObj.matchLink=`https://espncricinfo.com/series/${s.slug}-${s.objectId}/${m[i].slug}-${m[i].objectId}/full-scorecard`
         seriesObj.matches.push(matchObj)
     }
     return seriesObj
